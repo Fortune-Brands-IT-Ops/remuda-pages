@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Open IT App</title>
+<script src="https://res.cdn.office.net/teams-js/2.24.0/js/MicrosoftTeams.min.js"></script>
+<style>
+  :root{--bg:#0f1115;--panel:#171a21;--border:#272c35;--text:#e6e9ef;--muted:#8b93a3;--accent:#4c8dff;--accent-2:#00d18f;}
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(1000px 500px at 50% -10%,#16202e 0%,var(--bg) 60%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .card{width:min(420px,90vw);background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:30px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);}
+  .logo{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#4c8dff,#00d18f);display:grid;place-items:center;font-weight:800;color:#06121f;font-size:22px;margin:0 auto 16px;}
+  h1{font-size:18px;margin:0 0 6px;}
+  p{color:var(--muted);font-size:13.5px;margin:0 0 22px;line-height:1.5;}
+  button{width:100%;padding:13px;border:none;border-radius:10px;background:var(--accent);color:#06121f;font-weight:650;font-size:14.5px;cursor:pointer;transition:.15s;}
+  button:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .note{margin-top:14px;font-size:12px;color:var(--muted);}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">IT</div>
+    <h1>IT App</h1>
+    <p>This opens securely in your browser, where you'll sign in normally.</p>
+    <button id="openBtn">Open IT App ↗</button>
+    <div class="note">Opens in a new browser window.</div>
+  </div>
+
+<script>
+  // Default target; override per-tab with ?url=<encoded-url>
+  const DEFAULT_URL = "https://long-surf-3588.tines.com/apps/d58c453c72df75a9e67630dcd6f7134b";
+  const TARGET = new URLSearchParams(location.search).get("url") || DEFAULT_URL;
+
+  function openIt(){
+    if (window.microsoftTeams) {
+      microsoftTeams.app.initialize()
+        .then(()=> microsoftTeams.app.openLink(TARGET))
+        .catch(()=> window.open(TARGET, "_blank", "noopener"));
+    } else {
+      window.open(TARGET, "_blank", "noopener");
+    }
+  }
+  document.getElementById("openBtn").addEventListener("click", openIt);
+</script>
+</body>
+</html>
