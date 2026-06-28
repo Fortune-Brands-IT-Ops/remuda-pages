@@ -1,0 +1,4 @@
+/*
+  Content-Security-Policy: frame-ancestors 'self' *.cloud.microsoft teams.microsoft.com *.teams.microsoft.com *.skype.com
+  X-Content-Type-Options: nosniff
+  Cache-Control: no-store
